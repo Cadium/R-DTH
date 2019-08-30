@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCustomersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_customerid}" for="customerid" />
+                    <h:inputText id="customerid" value="#{customersController.selected.customerid}" title="#{bundle.EditCustomersTitle_customerid}" required="true" requiredMessage="#{bundle.EditCustomersRequiredMessage_customerid}"/>
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_cardnumber}" for="cardnumber" />
+                    <h:inputText id="cardnumber" value="#{customersController.selected.cardnumber}" title="#{bundle.EditCustomersTitle_cardnumber}" />
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_customername}" for="customername" />
+                    <h:inputText id="customername" value="#{customersController.selected.customername}" title="#{bundle.EditCustomersTitle_customername}" />
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_emailaddress}" for="emailaddress" />
+                    <h:inputText id="emailaddress" value="#{customersController.selected.emailaddress}" title="#{bundle.EditCustomersTitle_emailaddress}" />
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{customersController.selected.password}" title="#{bundle.EditCustomersTitle_password}" />
+                    <h:outputLabel value="#{bundle.EditCustomersLabel_serviceSubscribeId}" for="serviceSubscribeId" />
+                    <h:selectOneMenu id="serviceSubscribeId" value="#{customersController.selected.serviceSubscribeId}" title="#{bundle.EditCustomersTitle_serviceSubscribeId}" >
+                        <f:selectItems value="#{servicessubscriptionsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{customersController.update}" value="#{bundle.EditCustomersSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCustomersViewLink}"/>
+                <br />
+                <h:commandLink action="#{customersController.prepareList}" value="#{bundle.EditCustomersShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCustomersIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
